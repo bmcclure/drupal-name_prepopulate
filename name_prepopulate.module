@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * Implements hook_entity_prepare_form().
+ */
+function name_prepopulate_entity_prepare_form(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $account = \Drupal::currentUser();
+
+  if ($account->isAuthenticated()) {
+    $user = \Drupal\user\Entity\User::load($account->id());
+
+    $nameField = $user->get('field_name');
+
+    if (!$nameField->isEmpty()) {
+      /** @var \Drupal\name\Plugin\Field\FieldType\NameItem $name */
+      $name = $nameField->first();
+    }
+
+
+    // TODO: Prefill first and last name from user account
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function name_prepopulate_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity instanceof \Drupal\Core\Entity\FieldableEntityInterface) {
+    $types = ['contact_message'];
+    $fieldName = 'field_name';
+
+    if (in_array($entity->getEntityTypeId(), $types)) {
+
+    }
+  }
+}

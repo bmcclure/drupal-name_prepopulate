@@ -1,0 +1,5 @@
+name: Name Prepopulate
+description: Prepopulates name fields from the user account.
+core: 8.x
+package: Fields
+type: module

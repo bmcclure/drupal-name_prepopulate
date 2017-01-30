@@ -1,0 +1,8 @@
+{
+  "name": "drupal/name_prepopulate",
+  "type": "drupal-module",
+  "description": "Name Prepopulate",
+  "homepage": "https://github.com/TopFloorTech/drupal-name_prepopulate",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev"
+}
