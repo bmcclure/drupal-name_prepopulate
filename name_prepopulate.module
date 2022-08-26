@@ -6,7 +6,7 @@ use Drupal\name_prepopulate\NamePrepopulateHelper;
  * Implements hook_entity_prepare_form().
  */
 function name_prepopulate_entity_prepare_form(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Form\FormStateInterface $form_state) {
-  $nameField = 'field_name';
+  $nameField = 'name';
 
   $types = ['contact_message'];
 
@@ -27,7 +27,7 @@ function name_prepopulate_entity_prepare_form(\Drupal\Core\Entity\EntityInterfac
  * Implements hook_entity_presave().
  */
 function name_prepopulate_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
-  $nameField = 'field_name';
+  $nameField = 'name';
 
   $types = ['contact_message'];
 

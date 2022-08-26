@@ -5,7 +5,6 @@ namespace Drupal\name_prepopulate;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\field\Entity\FieldConfig;
-use Drupal\name\NameFormatParser;
 use Drupal\user\Entity\User;
 
 class NamePrepopulateHelper {
@@ -51,19 +50,14 @@ class NamePrepopulateHelper {
   }
 
   protected function getNameString() {
-    /** @var \Drupal\Core\Field\FieldConfigInterface $fieldConfig; */
-    $fieldConfig = FieldConfig::loadByName($this->entity->getEntityTypeId(), $this->entity->bundle(), $this->fieldName);
-
-    /** @var \Drupal\name\NameFormatInterface $format */
-    $format = \Drupal::entityTypeManager()->getStorage('name_format')->load($fieldConfig->getSetting('override_format'));
-
     $field = $this->getField();
 
     if ($field->isEmpty()) {
       return '';
     }
 
-    return NameFormatParser::parse($field->get(0)->getValue(), $format->get('pattern'), ['object' => $this->entity, 'type' => $this->entity->getEntityTypeId()]);
+    // Drupal\Component\Render\HtmlEscapedText
+    return ($field->get(0)->getValue())['value']->__toString();
   }
 
   protected function getField() {
