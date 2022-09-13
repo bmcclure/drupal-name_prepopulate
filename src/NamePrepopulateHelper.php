@@ -56,8 +56,12 @@ class NamePrepopulateHelper {
       return '';
     }
 
-    // Drupal\Component\Render\HtmlEscapedText
-    return ($field->get(0)->getValue())['value']->__toString();
+    $value = ($field->get(0)->getValue())['value'];
+    if ($value instanceof \Drupal\Component\Render\HtmlEscapedText) {
+        return $value->__toString();
+    } else {
+        return $value;
+    }
   }
 
   protected function getField() {
